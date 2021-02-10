@@ -1,0 +1,6 @@
+## nodejs
+node/node_modules/
+node/.env
+
+## old cleanup
+remove/

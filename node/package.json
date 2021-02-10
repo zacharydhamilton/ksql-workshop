@@ -1,0 +1,27 @@
+{
+  "name": "generator",
+  "version": "1.0.0",
+  "description": "create data and write it to postgres of Confluent ksql workshop",
+  "main": "generator.js",
+  "scripts": {
+    "start": "node generator.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "kafka",
+    "ksql",
+    "confluent"
+  ],
+  "author": "Zachary Hamilton",
+  "license": "ISC",
+  "dependencies": {
+    "creditcard-generator": "0.0.7",
+    "csv": "^5.3.2",
+    "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
+    "pg": "^8.5.1",
+    "uuid": "^8.3.2"
+  }
+}
