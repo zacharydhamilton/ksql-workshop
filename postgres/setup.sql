@@ -7,7 +7,6 @@ CREATE TABLE customers (
 	customer_id VARCHAR(50) PRIMARY KEY,
 	first_name VARCHAR(25),
 	last_name VARCHAR(25),
-	gender VARCHAR(25),
 	phone_number VARCHAR(25),
 	email_address VARCHAR(50),
 	street_address VARCHAR(100),
