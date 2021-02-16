@@ -4,7 +4,7 @@
   "description": "create data and write it to postgres of Confluent ksql workshop",
   "main": "generator.js",
   "scripts": {
-    "start": "node generator.js",
+    "start": "sleep 15 && node generator.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
