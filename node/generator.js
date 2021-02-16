@@ -33,30 +33,41 @@ class Generator {
     start = (cards) => {
         setInterval(() => {
             cards.then(values => {
-                this.pool.connect()
-                    .then(client => {
-                        var transaction = {
+                this.pool.connect((err, client, done) => {
+                    const shouldAbort = err => {
+                        if (err) {
+                            console.error('Error in transaction:', err.stack)
+                            client.query('ROLLBACK', err => {
+                                if (err) {
+                                    console.error('Error rolling back client:', err.stack);
+                                }
+                                done();
+                            }) 
+                        }
+                        return !!err;
+                    }
+                    client.query('BEGIN', (err, res) => {
+                        if (shouldAbort(err)) return;
+                        const transaction = {
                             id: uuidv4(),
                             card: values[Math.floor(Math.random() * values.length)],
                             amount: Math.floor(Math.random() * 25000)
-                        }        
-                        var query = `
+                        }
+                        const query = `
                         INSERT INTO bank.transactions (transaction_id, card_number, transaction_amount)
                         VALUES ('${transaction.id}', '${transaction.card}', ${transaction.amount})
-                        `
-                        console.log(query);
-                        return client.query(query)
-                            .then(res => {
-                                client.release();
+                        `;
+                        client.query(query, (err, res) => {
+                            if (shouldAbort(err)) return;
+                            client.query('COMMIT', (err, res) => {
+                                if (err) {
+                                    console.err('Error committing transaction:', err.stack);
+                                }
+                                done();
                             })
-                            .catch(err => {
-                                client.release();
-                                console.error(err.stack);
-                            })
+                        })
                     })
-                    .catch(err => {
-                        console.error(err);
-                    })
+                })
             })
             .catch(err => {
                 console.error(err);

@@ -42,5 +42,4 @@ CREATE TABLE transactions (
 	card_number VARCHAR(50)
 );
 
-INSERT INTO transactions(transaction_id, card_number, transaction_amount)
-VALUES ('b0e68cd8-b7e1-49f2-8653-0f358d39c908', '5337-6308-3885-1613', 10000);
+COMMIT;
