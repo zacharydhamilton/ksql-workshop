@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "creditcard-generator": "0.0.7",
+    "csv-parser": "^3.0.0",
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
     "pg": "^8.5.1",

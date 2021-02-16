@@ -1,5 +1,6 @@
 require('dotenv').config();
 const pg = require('pg');
+const csv = require('csv-parser');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
